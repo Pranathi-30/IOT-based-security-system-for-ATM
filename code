@@ -1,0 +1,40 @@
+int buzz=22,ir=23,d=0;
+void setup()
+{
+  Blynk.begin(auth,ssid,pass);
+pinMode(ir,INPUT);
+pinMode(buzz,OUTPUT);
+icd.begin(16,2);
+icd.setCursor(0,0);
+icd.print("IOT ATM THEFT");
+icd.setCursor(0,1);
+icd.print("ALERT");
+delay(4000);
+icd.clear();
+pinMode(35,INPUT);
+pinMode(34,INPUT);
+pinMode(39,INPUT);
+Serial.begin(9600);
+}
+void loop()
+{
+  lcd.clear();
+int x=analogRead(35);
+int y=analogRead(34);
+int z=analogRead(39);
+if(x<1600||x>2000)
+{
+Blynk.logEven("ATM","theft detector");
+lcd.clear();
+icd.setCursor(0,0);
+icd.print("THEFT");
+icd.setCursor(0,1);
+icd.printf("ALERT");
+digitWrite(buzz,HIGH);
+delay(1000);
+digitalWrite(buzz,low);
+
+
+
+
+
